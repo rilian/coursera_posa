@@ -1,0 +1,26 @@
+i work as web software developer and often have situations. in my work, me and my team often face the most common types of accidental and inherent complexities while building the web software.
+
+usual accidental complexities are related t:
+
+* not proper specification and business needs, and due to this we may choose to use not proper framework or tool, or design architecture that will be needed to trash soon and use something else due to change of business needs.
+
+* choosing right tool but have no proper skills to use it. this causes spending much time designing a part of service from scratch, why this could be simply replaced by framework or 3rd-party tool
+
+* building very low level stuff which may also be replaced by some other framework (referenced Low-level APIs in video)
+
+* limitation in tools to debug production code. For web software this may be serious issue cause it's hard to reproduce multi-server/multi-core production environment on development laptop. Recently some amazing tools appearing to be popular for this (like dtrace) so i hope this will be less "complex" in future. Also it's possible to use some cheap 3-rd party cloud software to replicate production environment and do some testing
+
+Inherent complexities:
+
+* lots of genius ideas appearing, that no one yet solved. this adds complexity that you cannot just sit and develop stuff, you and team have to do a round of brainstorms just to see in what direction to move.
+
+* there are no practical examples of how to build massive online distributed systems and what technology to use, so this also takes additional time to try out many tools or write own tools
+
+* synchronization - if data of one API relies on the data of other API, and some 3rd API relies on both this adds some interesting issues about how to notify other APIs whether data is ready (i.e. sure finished filling the params of business object) or not
+
+* scheduling - tracking status of data for further processing, if data is distributed across APIs
+
+* deadlocks or "short request life" when there is a loop of reading data across chain of APIs
+
+* denial of service if some required data from one API relies on data of inaccessible 3rd party service
+
