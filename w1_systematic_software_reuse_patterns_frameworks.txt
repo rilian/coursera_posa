@@ -1,0 +1,8 @@
+the biggest benefit of systematic software reuse is that development team can focus on solving the business needs of their software, and not digging into implementation of low-level components.if there is a 3rd-party tool that can be used for current project, it's better use it and ship product faster, rather than spending months/years building "ideal" own software that no one will need in this time.
+
+There is a DRY (do not repeat yourself) pronciple that also helps on low-level reuse of "own" code. If something in the project already solves the particular issue, another part of project, if it has the same issue, should reuse the code. In this way system will be more reliable since the common part will be tested better, and project structure will be more clear.
+
+Patterns are "best practices" of solving particular issue in the particular, common, way. Patterns are abstract, and this helps to see the project outline and do proper architecture design of components. Using patterns while building the software architecture helps "normalize" the project structure and build independent, lousely-coupled components. In future this may benefit if some component should be updated or replaced by a faster or somehow better solution -- the "pattern" may be easily extracted and replaced.
+
+Frameworks, in terms of distributed software development, behave like high-level patterns, and have same benefits. Frameworks allow to concentrate on high-level implementation of business specification, and not to dig into low-level details. They help to speed up development and lead to less errors
+
