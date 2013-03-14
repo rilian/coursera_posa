@@ -1,0 +1,29 @@
+while developing the middleware stack of distributed applications, that communicate via network, the effective communication plays very important role and sometimes brings very challenging issues (which are discussed in previous assesments by the way).
+
+First, developers should orient in available "off the shelf" middleware and know what is appropriate for their specific application domain. Developers that use higher middleware levels need to know how to properly configure lower level middleware for effective communication. Using proper patterns of architecture, or middleware stack, it is possible to build effective solution. This is called design dimensions. Also developers of lower levels of middleware should as well know where their middleware will be used, to be able to build apropriate solution, and provide proper communication design (interface to for access)
+
+When choosing effective communication between services it is important to know the purpose and cases of usage of the middleware. If it is an OS-level middleware, it is more apropriate to use kinds of binary message encoding strategy to save size and time for processing communication packets. For example TCP/ID protocol. For higher level APIs it is more apropriate to use text encoding strategy, in the human-readable form. It should not be plain English of course, but should be understandable for developers aware of the communication specifics. For example HTTP protocol. Processing text-based protocol takes more time, but it is much easier to debug and configure. There may be combined solutions.
+
+Another design dimention, is connection multiplexing, when with one request may be sent multiple data packets. This saves traffic and time to initiate connection, and especially effective for synchronous connections. Downside of it is that multiplexed connection is harder to implement and support. From the other side, non-multiplexed connection takes more resources, but is easier and more straight forward to develop and maintain.
+
+Synchronous message request in reliable, but takes more time for communication and adds complexity of supporting queue of messages to retry sending. Asynchronous communication is not reliable (packets may be lost), but is much faster and requires less state to implement on both sides.
+
+Another design dimension is message passing vs shared memory. Application, that is scaled vertically, uses shared memory. It is easier to develop and maintain, but it has limitation of hardware, and building machine with high operating memory may also be challenging. From the other side application that is scaled horizontally uses messages to exchange data, and it may be scaled a lot, but it is not effective for massive computation (for example in bioinformatics or physics or climate etc computations), where different parts of memory has to be read/shared between other "random" parts.
+
+Another ser of design dimentions are Service (capability or feature of middleware, that is available to consumers); Server is a mechanism, by which service is provided; Configuration, which binds services together in various structure arrangements. Services may be short-duration, which provide relatively small data, like reading current city weather from meteo statistics site, and long-duration services, which usually used to stream data over network.
+
+Internal services places in the same address space, for example usual database and website hosted on one machine. This is very effective from communication point of view, but services may interfere each other if one of them is under high load. External services are independent and generally are more robust, but there may be overhead on communication between remote external services.
+
+Services may be monolithic, where it performs effectively one main task, but they are harder to develop, configure and maintain. Layer-based services are easier to configure and understand, but there may be overhead in communication between layers.
+
+Single-service servers provide one service, but there is an overhead of unused resources and inconsistent administration. When some routine operation (upgrade) should be done on many separated single-service server, this may be not very effectively. That is why it is common to have multi-service servers where there are several parts of application share the same resources. This is easier to administrate, but there may be the same overhead when services "fight" for hardware resources.
+
+"One-shot" server works on a single request. This allows to effectively utilize resources, but there may be overhead on starting up a server to procecss request each time. "Standing-servers" continue to run. This allows to reduce startup overhead but they utilize more resources.
+
+AND OTHER DESIGN DIMENSIONS.
+
+Developer should be aware of these dimensions to build the effective architecture with less overheads.
+
+thanks for reading :)
+
+
