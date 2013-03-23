@@ -1,0 +1,14 @@
+Concurrency, or processing several of similar resources simultaneously, for network applications may be provided by hardware layers, such as multi-core hardware, and software layers, implemented in multi-process and multi-threaded applications. To run application across multiple cores, using one or many processes, or utilizing one core and using multiple threads, application relies on the low level mechanisms, provided by operating systems.
+
+Synchronization performance depends on OS implementation, hardware and use cases. Mutex (mutual exclusion) is used to ensure that only one process or thread has exclusive access to the resource at a given time. Mutexes have the least overhead over other synchronization mechanisms.
+
+Reader/writer locks have higher overhead than mutexes but they enable more parallelism, especially on multi-core processors, when application has a lot of read and write operations. In this case, lock provides access to read resource to multiple processes or threads, while only one thread or process has access to write this resource.
+
+Condition variables and semaphores usually have bigger overhead than mutexes, but at the same time they are more expressive and flexible to use. Lock on conditional variables assumes that process has access to critical section (resource) only if certain condition occurs (in pizza-delivery example in lecture that is you can deliver pizza only if you have pizza and keys to the delivery car).
+
+Nonrecursive mutexes, which must be set and released by the same process, are more efficient and have less overhead than recursive mutexes, but there are many ways to do an error using them, causing deadlock on resource access. Recursive mutexes, which may be set by different processes, do not cause deadlock upon failure to set mutex, but they have more overhead in implementation: for example extra lock operation and usage of conditional variables.
+
+Also, not all OS support all the synchronization mechanisms off the shelf. In some cases there may be needed an emulation of a synchro mechanism to provide application portability.
+
+When develop a concurrent network application you need to think about which synchronization mechanism to use, think on which OS it may be ported, where it will be more efficient and have less overhead. In large projects it may sense to build parts of application on completely different OS just to efficiently utilize all provided synchronisation mechanisms. You also should utilize as much as possible high level patterns of implementation, which bring less errors and more efficiency of application.
+
