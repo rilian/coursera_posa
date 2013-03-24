@@ -1,0 +1,22 @@
+Android provides mechanisms to implement networked apps that communicate via sockets API and use other Android-specific interprocess communication mechanisms. They are implemented via AIDL/Binder, which is Android interface definition language and Binder is OO remote procedure call mechanism that resides in the middleware layer and partly in the Linux kernel.
+
+AIDL supports synchronous calls between processes, which means that Caller thread is blocked until communication finished. Async communication is possible via callbacks Android includes multiple network programming classes: java.net, org.apache, android.net.
+
+To be able to implement concurrent applications, Android has mechanisms to process requests simultaneously via multithreading, and synchronise their interactions. Android implements Java threads and concurrency classes, run in Dalvik VM.
+
+Conceptual view provides concurrent computations running in a process. Implementation view: each Java thread has a program counter and unique stack. The heap and static memory areas are shared across threads. In Java, each thread must have a code to run. Developer either have to override the Thread's run() method, or this method should internally call a run() method in a Runnable (class that provides runnable interface) to perform computation. Processing starts automatically when we call start() method on this Thread. 
+
+Java provides "synchronized" keyword to specify that section of code in an object cannot be accessed concurrently by two threads. Only a single synchronized method can be active in any given object. Java objects with synchronized methods use the Monitor Object pattern to be able to synchronize a method, notify other threads. java.util.concurrent.* provides other mechanizms such as Lock, Semaphore, Condition, ReadWriteLock etc.
+
+To motivate Android concurrency idioms, Android's UI has several design constraints. An "Application Not responding" (ANR) dialog is generated if app's UI thread does not respond to user input within a short time. Non-UI thread can't access UI toolkit since it is not thread safe. Thus Android is able to do long-running operations in background threads and communicating with UI Thread via AsyncTask, using Handlers, Messages and Runnables.
+
+AsyncTask is a framework which provides an abstract interface to manage work involving background and UI threads. It simplifies creation of long-running tasks that need to communicate with UI. For example device Alarm.
+
+Threads in Android communicate via exchanging Messages and Runnables. 
+UI Thread performs user interaction, system callbacks and Activity lifecycle methods. It connects looper to manage and dispatch MessageQueue entries. Handlers typically used in background threads, to send Messages and Runnables to UI thread. Also used to schedule Msg and Runnables for future execution, and enqueues actions to perform on different thread.
+
+
+
+
+
+
