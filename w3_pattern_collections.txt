@@ -1,0 +1,18 @@
+To design a specific application domain architecture, there may be needed a set of patterns to solve specific parts of whole app architecture. In this case developers may use Pattern Collections, as well as more advanced forms of pattern relations, like Pattern Complements, Pattern Compounds, Pattern Sequences, and Pattern Languages.
+
+Single Patterns usually bound to a specific problem that arise in specific context. For example Singleton pattern to keep some static data and Proxy pattern to provide interface to incapsulated data. In practice sometimes stand-alone patterns are not usual. For example Observer pattern cannot work independently. What it will observe? :)
+
+Any substantial software design inevitably includes many patterns, working in scope of specific problem. This rises a challenge for developers - what is the best organisation of pattern to provide effective solution by various design dimensions: maintainability, performance, time-to-market.
+
+In practice, collections of stand-alone patterns have certainly been used with success. They are combined together to provide an architectural "brick". Patterns usually form several types of relationships:
+
+Pattern complements, where one pattern provides missing ingredient needed by another. So two or more patterns complement each other to exchange data in specific way. For example Factory pattern used to create objects, and Disposal patter used to free resources used by Factory during the creation of objects. Or one pattern may contrast with another to provide an alternative solution to a related architecture design problem.
+
+Pattern compounds capture recurring subsets of patterns that can be treated as a single decision in response to a recurring design problem.
+
+Pattern sequences, used to dynamically compose the patterns in a particular use case
+
+Pattern languages are networks of related patterns that define a process for the orderly resolution of development problems in particular domains.
+
+It's up to software developer to choose how to effectively organise patterns and their combinations, in order to ease of use and apply them.
+
